@@ -11,11 +11,17 @@ class Observation:
             "BsWfs": "http://xml.fmi.fi/schema/wfs/2.0",
             "gml": "http://www.opengis.net/gml/3.2",
             "wfs": "http://www.opengis.net/wfs/2.0" }
-        wfs20 = WebFeatureService(url='https://opendata.fmi.fi/wfs?request=GetCapabilities', version='2.0.0')
+        wfs20 = WebFeatureService(
+            url='https://opendata.fmi.fi/wfs?request=GetCapabilities',
+            version='2.0.0'
+        )
         try:
-            resp = wfs20.getfeature(storedQueryID='fmi::observations::weather::simple', storedQueryParams={'place':  place })
+            resp = wfs20.getfeature(
+                storedQueryID='fmi::observations::weather::simple',
+                storedQueryParams={'place':  place }
+            )
         except:
-            print("error.")
+            print("Error fetching data. Perhaps place is not known.")
             quit()
         resp_xml = resp.read().decode("utf-8")
         root = ET.fromstring(resp_xml)
@@ -24,7 +30,6 @@ class Observation:
         self.timestamp = lastTimestamp
         self.pos = root.find(".//gml:pos", ns).text
         self.parameter = {}
-#        print(self.place, self.pos, self.lastTimestamp)
         for BsWfsElement in root.findall("./wfs:member/BsWfs:BsWfsElement/[BsWfs:Time='" + lastTimestamp + "']", ns):
             self.parameter[BsWfsElement.findall(".//BsWfs:ParameterName", ns)[0].text] = BsWfsElement.findall(".//BsWfs:ParameterValue", ns)[0].text
 
