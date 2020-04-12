@@ -50,8 +50,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--loctype", default='place', choices=['place', 'fmisid', 'wmo'])
     parser.add_argument("locid")
-    parser.add_argument("--delta", type=int, default=0, choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    parser.add_argument("--delta", type=int, default=0)
     args = parser.parse_args()
+    if args.delta > 11:
+        print("delta is too high, use 1 to 11")
+        exit(42)
     obs = Observation(args.loctype, args.locid, args.delta)
     print("Weather at", obs.locid, "(loctype: " + obs.loctype + ") pos: " + obs.pos)
     if len(obs.parameterDelta.keys()) > 0:
