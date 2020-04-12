@@ -5,3 +5,5 @@ This fetches latest weather data from given station. One mandatory parameter val
 * place (Helsinki)
 * fmisid (151028, https://www.ilmatieteenlaitos.fi/havaintoasemat)
 * wmo (02701, https://www.ilmatieteenlaitos.fi/havaintoasemat)
+
+show also history data (1-11 hours) by using --delta [1-11]
