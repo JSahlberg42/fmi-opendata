@@ -6,7 +6,7 @@ import argparse
 
 
 class Observation:
-    def __init__(self, place):
+    def __init__(self, locType, locId):
         ns = {
             "BsWfs": "http://xml.fmi.fi/schema/wfs/2.0",
             "gml": "http://www.opengis.net/gml/3.2",
@@ -18,14 +18,15 @@ class Observation:
         try:
             resp = wfs20.getfeature(
                 storedQueryID='fmi::observations::weather::simple',
-                storedQueryParams={'place':  place }
+                storedQueryParams={locType:  locId }
             )
         except:
             print("Error fetching data. Perhaps place is not known.")
             quit()
         resp_xml = resp.read().decode("utf-8")
         root = ET.fromstring(resp_xml)
-        self.place = place
+        self.loctype = locType
+        self.locid = locId
         lastTimestamp = root.findall(".//BsWfs:Time", ns)[-1].text
         self.timestamp = lastTimestamp
         self.pos = root.find(".//gml:pos", ns).text
@@ -35,10 +36,11 @@ class Observation:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("place")
+    parser.add_argument("--loctype", default='place', choices=['place', 'fmisid', 'wmo'])
+    parser.add_argument("locid")
     args = parser.parse_args()
-    obs = Observation(args.place)
-    print("Weather at", obs.place, obs.pos, "at", obs.timestamp)
+    obs = Observation(args.loctype, args.locid)
+    print("Weather at", obs.locid, "(loctype: " + obs.loctype + ") pos: " + obs.pos, "at", obs.timestamp)
     for key in obs.parameter.keys():
         if obs.parameter[key] != 'NaN':
             print(key, obs.parameter[key])
