@@ -23,9 +23,9 @@ deltaHours is optional. Values can be between 1 and 11. If defined, it returns p
 
 | variable | type | description |
 | --- | --- | --- |
-locid | str |
-loctype | str |
-parameter | dict |
-parameterDelta | dict |
-pos | str |
-timestamp | str |
+locid | str | location ID
+loctype | str | location ID type
+parameter | dict | fetched params and values
+parameterDelta | dict | fetched historial params and values
+pos | str | observation spot location (EUREF-FIN)
+timestamp | str | observation timestamp, format '2020-04-13T07:50:00Z'
