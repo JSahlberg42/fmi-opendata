@@ -20,3 +20,12 @@ locType values and example values for locId:
 * wmo (02701, https://www.ilmatieteenlaitos.fi/havaintoasemat)
 
 deltaHours is optional. Values can be between 1 and 11. If defined, it returns past parameter values in parameterDelta dictionary.
+
+variable | type | description
+---------+------+------------
+locid | str |
+loctype | str |
+parameter | dict |
+parameterDelta | dict |
+pos | str |
+timestamp | str |
