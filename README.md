@@ -21,8 +21,8 @@ locType values and example values for locId:
 
 deltaHours is optional. Values can be between 1 and 11. If defined, it returns past parameter values in parameterDelta dictionary.
 
-variable | type | description
----------+------+------------
+| variable | type | description |
+| --- | --- | --- |
 locid | str |
 loctype | str |
 parameter | dict |
