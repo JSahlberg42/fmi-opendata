@@ -3,7 +3,7 @@
 ## FmiObsWeatherSimple
 Example
 ```
-import from fmiOpendata import FmiObsWeatherSimple
+from fmiOpendata import FmiObsWeatherSimple
 
 obs = FmiObsWeatherSimple('place', 'Helsinki') # FmiObsWeatherSimple(locType, locId, deltaHours = 0)
 
