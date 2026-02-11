@@ -1,7 +1,7 @@
 certifi==2022.12.7
 chardet==3.0.4
 idna==2.9
-OWSLib==0.19.2
+OWSLib==0.28.1
 pyproj==2.6.0
 python-dateutil==2.8.1
 pytz==2019.3
