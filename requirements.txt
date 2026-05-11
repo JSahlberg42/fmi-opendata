@@ -8,4 +8,4 @@ pytz==2019.3
 PyYAML==5.4
 requests==2.32.4
 six==1.14.0
-urllib3==2.6.3
+urllib3==2.7.0
